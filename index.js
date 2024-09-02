@@ -6,7 +6,7 @@ import path from "node:path";
 import { exec } from "node:child_process";
 import chalk from "chalk";
 
-const templateDir = path.resolve("./template/");
+const templateDir = path.resolve(import.meta.dirname, "./template/");
 const projectDir = path.resolve(process.cwd(), await getProjectName());
 
 async function main() {

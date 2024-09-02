@@ -2,6 +2,13 @@
 
 Welcome to the p5.js Project Creator! This command-line tool helps you quickly set up a new p5.js project with a predefined template and necessary configurations.
 
+## Quickstart:
+
+    ```bash
+    npx new-p5-app
+    ```
+
+
 ## Table of Contents
 
 - [Features](#features)
