@@ -1,0 +1,10 @@
+# docker compose up -d && docker compose logs
+services:
+  pwa:
+    container_name: pwa
+    build:
+       dockerfile: ./Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+

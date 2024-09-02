@@ -8,9 +8,11 @@ import chalk from "chalk";
 
 const templateDir = path.resolve(import.meta.dirname, "./template/");
 const pwaTemplateDir = path.resolve(import.meta.dirname, "./template-pwa/");
+const deployTemplateDir = path.resolve(import.meta.dirname, "./template-deploy/");
 const projectDir = path.resolve(process.cwd(), await getProjectName());
 const srcDir = path.resolve(projectDir, "src");
 let isPwa;
+let withDeploy;
 
 async function main() {
   try {
@@ -18,8 +20,13 @@ async function main() {
 
     await copyTemplateDir();
     isPwa = await getPwaOption();
+    withDeploy = await getDeployOption();
+
     if (isPwa) {
       await copyPwaFiles();
+    }
+    if (withDeploy) {
+      await copyDeployFiles();
     }
 
     await installDependencies();
@@ -42,11 +49,27 @@ async function getPwaOption() {
   return await confirm({ message: "Add PWA support?" });
 }
 
+async function getDeployOption() {
+  return await confirm({ message: "Add Docker deployment support?" });
+}
 
 async function copyTemplateDir() {
   await fs.cp(templateDir, projectDir, { recursive: true });
 }
 
+async function copyDeployFiles() {
+  const dockerfile = path.join(deployTemplateDir, "Dockerfile");
+  const dockerfileDest = path.join(projectDir, "Dockerfile");
+  await fs.copyFile(dockerfile, dockerfileDest);
+
+  const composeFile = path.join(deployTemplateDir, "docker-compose.yml");
+  const composeFileDest = path.join(projectDir, "docker-compose.yml");
+  await fs.copyFile(composeFile, composeFileDest);
+
+  const nginxConf = path.join(deployTemplateDir, "nginx.conf");
+  const nginxConfDest = path.join(projectDir, "nginx.conf");
+  await fs.copyFile(nginxConf, nginxConfDest);
+}
 async function copyPwaFiles() {
   const pwaIconsDir = path.join(pwaTemplateDir, "icons");
   const projectIconsDir = path.join(srcDir, "icons");
