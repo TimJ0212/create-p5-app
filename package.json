@@ -4,7 +4,7 @@
   "repository": "github:TimJ0212/create-p5-app",
   "licence": "MIT",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "bin": {
     "new-p5-app": "./index.js"
   },
