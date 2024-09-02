@@ -1,9 +1,12 @@
 {
-  "name": "create-p5-app",
+  "name": "new-p5-app",
+  "home": "https://github.com/TimJ0212/create-p5-app/blob/master/README.md",
+  "repository": "github:TimJ0212/create-p5-app",
+  "licence": "MIT",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "bin": {
-    "create-p5-app": "./index.js"
+    "new-p5-app": "./index.js"
   },
   "dependencies": {
     "@inquirer/prompts": "^5.3.8",
