@@ -1,0 +1,12 @@
+{
+  "name": "create-p5-app",
+  "type": "module",
+  "version": "1.0.0",
+  "bin": {
+    "create-p5-app": "./index.js"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^5.3.8",
+    "chalk": "^5.3.0"
+  }
+}
